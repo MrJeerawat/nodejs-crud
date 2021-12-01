@@ -12,9 +12,6 @@ const connection = mysql.createConnection({
 connection.connect();
 
 app.use(bodyParser.json())
-app.get('/', function (req, res) {
-  res.send('Hello World')
-})
 
 app.get('/student',(req,res)=>{
     connection.query('SELECT * from student',(err,rows,field)=>{
@@ -120,7 +117,7 @@ app.post('/class/update', (req,res)=>{
     const required = req.query.required
     connection.query('UPDATE class set required = ? where id_class = ?',[required,idClass],(err,result)=>{
         if(!err){
-            res.send('insert success')
+            res.send('update success')
             }
             else{
             res.send(err)
